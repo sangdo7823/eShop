@@ -1,5 +1,6 @@
 ﻿using eShop.Data.Entities;
 using eShop.Data.Enums;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -11,6 +12,39 @@ namespace eShop.Data.Extensions
     {
         public static void Seed(this ModelBuilder modelBuilder)
         {
+
+            // any guid
+            var roleId = 1;
+            var adminId = 1;
+            modelBuilder.Entity<AppRole>().HasData(new AppRole
+            {
+                Id = roleId,
+                Name = "admin",
+                NormalizedName = "admin",
+                Description = "Administrator role"
+            });
+
+            var hasher = new PasswordHasher<AppUser>();
+            modelBuilder.Entity<AppUser>().HasData(new AppUser
+            {
+                Id = adminId,
+                UserName = "admin",
+                NormalizedUserName = "admin",
+                Email = "teamsoft91@gmail.com",
+                NormalizedEmail = "sangdo.eng@gmail.com",
+                EmailConfirmed = true,
+                PasswordHash = hasher.HashPassword(null, "123456"),
+                SecurityStamp = string.Empty,
+                FirstName = "Sang",
+                LastName = "Do",
+                BirthDay = new DateTime(1991, 10, 04)
+            });
+
+            modelBuilder.Entity<IdentityUserRole<int>>().HasData(new IdentityUserRole<int>
+            {
+                RoleId = roleId,
+                UserId = adminId
+            });
 
             modelBuilder.Entity<AppConfig>().HasData(
                new AppConfig() { Key = "HomeTitle", Value = "This is home page of eShopSolution" },

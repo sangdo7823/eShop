@@ -1,6 +1,8 @@
 ﻿using eShop.Data.Configurations;
 using eShop.Data.Entities;
 using eShop.Data.Extensions;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic; 
@@ -8,7 +10,7 @@ using System.Text;
 
 namespace eShop.Data.EF
 {
-    public class EShopDbContext : DbContext
+    public class EShopDbContext : IdentityDbContext<AppUser, AppRole, int>
     {
         public EShopDbContext(DbContextOptions options) : base(options)
         {
@@ -18,7 +20,9 @@ namespace eShop.Data.EF
         {
             //Configure using Fluent API
             modelBuilder.ApplyConfiguration(new AppConfigConfiguration());
+            modelBuilder.ApplyConfiguration(new AppRoleConfiguration());
             modelBuilder.ApplyConfiguration(new AppSeoConfiguration());
+            modelBuilder.ApplyConfiguration(new AppUserConfiguration());
             modelBuilder.ApplyConfiguration(new CartConfiguration());
             modelBuilder.ApplyConfiguration(new CategoryConfiguration());
             modelBuilder.ApplyConfiguration(new CategoryTranslationConfiguration());
@@ -32,6 +36,16 @@ namespace eShop.Data.EF
             modelBuilder.ApplyConfiguration(new ProductTranslationConfiguration());
             modelBuilder.ApplyConfiguration(new PromotionConfiguration());
             modelBuilder.ApplyConfiguration(new TransactionConfiguration());
+
+            //Identity
+            
+            modelBuilder.Entity<IdentityUserClaim<int>>().ToTable("AppUserClaims");
+            modelBuilder.Entity<IdentityUserRole<int>>().ToTable("AppUserRoles").HasKey(x => new { x.UserId, x.RoleId });
+            modelBuilder.Entity<IdentityUserLogin<int>>().ToTable("AppUserLogins").HasKey(x => x.UserId);
+
+            modelBuilder.Entity<IdentityRoleClaim<int>>().ToTable("AppRoleClaims");
+            modelBuilder.Entity<IdentityUserToken<int>>().ToTable("AppUserTokens").HasKey(x => x.UserId);
+
 
             //Data seeding 
             modelBuilder.Seed();
