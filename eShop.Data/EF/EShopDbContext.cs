@@ -20,18 +20,26 @@ namespace eShop.Data.EF
         {
             //Configure using Fluent API
             modelBuilder.ApplyConfiguration(new AppConfigConfiguration());
+            modelBuilder.ApplyConfiguration(new ArticleMediaConfiguration());
             modelBuilder.ApplyConfiguration(new AppRoleConfiguration());
             modelBuilder.ApplyConfiguration(new AppSeoConfiguration());
             modelBuilder.ApplyConfiguration(new AppUserConfiguration());
+            modelBuilder.ApplyConfiguration(new ArticleConfiguration());
+            modelBuilder.ApplyConfiguration(new ArticleInCategoryConfiguration());
+            modelBuilder.ApplyConfiguration(new ArticleMediaConfiguration());
+            modelBuilder.ApplyConfiguration(new ArticleRelateConfiguration());
+            modelBuilder.ApplyConfiguration(new ArticleTranslationConfiguration());
             modelBuilder.ApplyConfiguration(new CartConfiguration());
             modelBuilder.ApplyConfiguration(new CategoryConfiguration());
             modelBuilder.ApplyConfiguration(new CategoryTranslationConfiguration());
             modelBuilder.ApplyConfiguration(new ContactConfiguration());
             modelBuilder.ApplyConfiguration(new LanguageConfiguration());
+            modelBuilder.ApplyConfiguration(new MenuConfiguration());
+            modelBuilder.ApplyConfiguration(new MenuItemConfiguration());
             modelBuilder.ApplyConfiguration(new OrderConfiguration());
             modelBuilder.ApplyConfiguration(new OrderDetailConfiguration());
             modelBuilder.ApplyConfiguration(new ProductConfiguration());
-            modelBuilder.ApplyConfiguration(new ProductImageConfiguration());
+            modelBuilder.ApplyConfiguration(new ProductMediaConfiguration());
             modelBuilder.ApplyConfiguration(new ProductInCategoryConfiguration());
             modelBuilder.ApplyConfiguration(new ProductTranslationConfiguration());
             modelBuilder.ApplyConfiguration(new PromotionConfiguration());
@@ -56,7 +64,7 @@ namespace eShop.Data.EF
 
         public DbSet<Product> Products { set; get; }
         public DbSet<ProductTranslation> ProductTranslations { get; set; }
-        public DbSet<ProductImage> ProductImages { get; set; }
+        public DbSet<ProductMedia> ProductImages { get; set; }
 
         public DbSet<Category> Categories { set; get; }
         public DbSet<CategoryTranslation> CategoryTranslations { get; set; }
