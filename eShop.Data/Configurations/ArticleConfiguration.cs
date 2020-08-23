@@ -8,16 +8,15 @@ using System.Text;
 
 namespace eShop.Data.Configurations
 {
-    public class CategoryConfiguration : IEntityTypeConfiguration<Category>
+    public class ArticleConfiguration : IEntityTypeConfiguration<Article>
     {
-        public void Configure(EntityTypeBuilder<Category> builder)
+        public void Configure(EntityTypeBuilder<Article> builder)
         {
-            builder.ToTable("Categories").HasKey(x => x.CategoryId);
-
-            builder.Property(x => x.CategoryId).UseIdentityColumn(); 
-            builder.Property(x => x.UrlRewriteType).HasMaxLength(20); 
-
+            builder.ToTable("Articles").HasKey(x => x.ArticleId); 
+            builder.Property(x => x.ArticleId).UseIdentityColumn(); 
+            builder.Property(x => x.CrDateTime).HasDefaultValue(DateTime.Now);
             builder.Property(x => x.ReviewStatusId).HasDefaultValue(ReviewStatus.New);
+
         }
     }
 }

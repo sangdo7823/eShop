@@ -62,6 +62,8 @@ namespace eShop.Data.Extensions
                     IsShowHome = true,
                     ParentId = null,
                     DisplayOrder = 1,
+                    DataTypeId = DataType.Product,
+                    UrlRewriteType = "product",
                     ReviewStatusId = ReviewStatus.Active,
                 },
                  new Category()
@@ -70,6 +72,18 @@ namespace eShop.Data.Extensions
                      IsShowHome = true,
                      ParentId = null,
                      DisplayOrder = 2,
+                     DataTypeId = DataType.Product,
+                     UrlRewriteType = "product",
+                     ReviewStatusId = ReviewStatus.New
+                 },
+                 new Category()
+                 {
+                     CategoryId = 3,
+                     IsShowHome = true,
+                     ParentId = null,
+                     DisplayOrder = 3,
+                     DataTypeId = DataType.Article,
+                     UrlRewriteType = "article",
                      ReviewStatusId = ReviewStatus.New
                  });
 
@@ -79,12 +93,14 @@ namespace eShop.Data.Extensions
                   new AppSeo() { AppSeoId = 3, SeoTitle = "Áo nữ", SeoDescription = "Áo nữ", SeoKeyword = "Áo nữ" },
                   new AppSeo() { AppSeoId = 4, SeoTitle = "Women Shirt", SeoDescription = "Women Shirt", SeoKeyword = "Women Shirt" },
                   new AppSeo() { AppSeoId = 5, SeoTitle = "Áo sơ mi nam trắng Việt Tiến", SeoDescription = "Áo sơ mi nam trắng Việt Tiến", SeoKeyword = "Áo sơ mi nam trắng Việt Tiến" },
-                  new AppSeo() { AppSeoId = 6, SeoTitle = "Viet Tien Men T-Shirt", SeoDescription = "Viet Tien Men T-Shirt", SeoKeyword = "Viet Tien Men T-Shirt" }
+                  new AppSeo() { AppSeoId = 6, SeoTitle = "Viet Tien Men T-Shirt", SeoDescription = "Viet Tien Men T-Shirt", SeoKeyword = "Viet Tien Men T-Shirt" },
+                  new AppSeo() { AppSeoId = 7, SeoTitle = "Xin chào", SeoDescription = "Xin chào", SeoKeyword = "Xin chào" },
+                  new AppSeo() { AppSeoId = 8, SeoTitle = "Wellcome", SeoDescription = "Wellcome", SeoKeyword = "Wellcome" }
                   );
 
             modelBuilder.Entity<CategoryTranslation>().HasData(
                   new CategoryTranslation() { CategoryTranslationId = 1, CategoryId = 1, CategoryName = "Áo nam", CategoryDesc = "Áo nam", LanguageId = "vi-VN", SeoAlias = "ao-nam", AppSeoId = 1 },
-                  new CategoryTranslation() { CategoryTranslationId = 2, CategoryId = 1, CategoryName = "Men Shirt", CategoryDesc = "Men Shirt", LanguageId = "en-US", SeoAlias = "men-shirt", AppSeoId =2 },
+                  new CategoryTranslation() { CategoryTranslationId = 2, CategoryId = 1, CategoryName = "Men Shirt", CategoryDesc = "Men Shirt", LanguageId = "en-US", SeoAlias = "men-shirt", AppSeoId = 2 },
                   new CategoryTranslation() { CategoryTranslationId = 3, CategoryId = 2, CategoryName = "Áo nữ", CategoryDesc = "Áo nữ", LanguageId = "vi-VN", SeoAlias = "ao-nu", AppSeoId = 3 },
                   new CategoryTranslation() { CategoryTranslationId = 4, CategoryId = 2, CategoryName = "Women Shirt", CategoryDesc = "Women Shirt", LanguageId = "en-US", SeoAlias = "women-shirt", AppSeoId = 4 }
                     );
@@ -126,6 +142,41 @@ namespace eShop.Data.Extensions
                 new ProductInCategory() { ProductId = 1, CategoryId = 1 }
                 );
 
+            modelBuilder.Entity<Article>().HasData(
+                 new Article()
+                 {
+                     ArticleId = 1,
+                     CrDateTime = DateTime.Now,
+                     ViewCount = 0
+                 });
+
+            modelBuilder.Entity<ArticleTranslation>().HasData(
+                 new ArticleTranslation()
+                 {
+                     ArticleTranslationId = 1,
+                     ArticleId = 1,
+                     ArticleTitle = "Xin chào",
+                     ArticleSummary = "Xin chào",
+                     ArticleContent = "Xin chào",
+                     LanguageId = "vi-VN",
+                     SeoAlias = "xin-chao",
+                     AppSeoId = 7
+                 },
+                    new ArticleTranslation()
+                    {
+                        ArticleTranslationId = 2,
+                        ArticleId = 1,
+                        ArticleTitle = "Wellcome",
+                        ArticleSummary = "Wellcome",
+                        ArticleContent = "Wellcome",
+                        LanguageId = "en-US",
+                        SeoAlias = "wellcome",
+                        AppSeoId = 7
+                    });
+
+            modelBuilder.Entity<ArticleInCategory>().HasData(
+                new ArticleInCategory() { ArticleId = 1, CategoryId = 3 }
+                );
         }
     }
 }
