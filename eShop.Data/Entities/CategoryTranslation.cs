@@ -13,12 +13,12 @@ namespace eShop.Data.Entities
         public string CategoryDesc { set; get; } 
         public string LanguageId { set; get; }
         public string SeoAlias { set; get; }
+        public int AppSeoId { set; get; }
 
         public Category Category { get; set; }
 
         public Language Language { get; set; }
 
-        public AppSeo AppSeo { set; get; }
 
     }
 }

@@ -18,8 +18,9 @@ namespace eShop.Data.Configurations
 
             builder.Property(x => x.CategoryTranslationId).UseIdentityColumn();
 
-
             builder.Property(x => x.CategoryName).IsRequired().HasMaxLength(200);
+
+            builder.Property(x => x.CategoryDesc).IsRequired().HasMaxLength(500);
 
             builder.Property(x => x.SeoAlias).IsRequired().HasMaxLength(200); 
 
@@ -29,7 +30,6 @@ namespace eShop.Data.Configurations
 
             builder.HasOne(x => x.Category).WithMany(x => x.CategoryTranslations).HasForeignKey(x => x.CategoryId);
 
-            builder.HasOne(x => x.AppSeo).WithOne(x => x.CategoryTranslation).HasForeignKey<AppSeo>(x => x.CategoryTranslationId);
         }
     }
 }

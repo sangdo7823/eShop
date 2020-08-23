@@ -25,9 +25,7 @@ namespace eShop.Data.Configurations
             builder.HasOne(x => x.Language).WithMany(x => x.ProductTranslations).HasForeignKey(x => x.LanguageId);
 
             builder.HasOne(x => x.Product).WithMany(x => x.ProductTranslations).HasForeignKey(x => x.ProductId);
-
-            builder.HasOne(x => x.AppSeo).WithOne(x => x.ProductTranslation).HasForeignKey<AppSeo>(x => x.ProductTranslationId);
-
+            
         }
     }
 }

@@ -15,6 +15,10 @@ namespace eShop.Data.Configurations
             builder.ToTable("AppSeos").HasKey(x => x.AppSeoId);
             builder.Property(x=>x.AppSeoId).UseIdentityColumn();
             builder.Property(x => x.SeoTitle).IsRequired().HasMaxLength(200); 
+            builder.Property(x => x.SeoDescription).HasMaxLength(200);  
+            builder.Property(x => x.SeoKeyword).HasMaxLength(200);
+            builder.Property(x => x.Canonical).HasMaxLength(200);
+            builder.Property(x => x.ImagePath).HasMaxLength(200);
         }
     }
 }

@@ -22,7 +22,7 @@ namespace eShop.Data.Configurations
             builder.Property(x => x.Email).HasMaxLength(200).IsRequired();
             builder.Property(x => x.PhoneNumber).HasMaxLength(200).IsRequired();
             builder.Property(x => x.Message).IsRequired();
-            builder.Property(x => x.CrDateTime);
+            builder.Property(x => x.CrDateTime).HasDefaultValue(DateTime.Now);
             builder.Property(x => x.ReviewStatusId).HasDefaultValue(ReviewStatus.New);
         }
     }
